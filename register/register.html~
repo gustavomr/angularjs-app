@@ -1,0 +1,37 @@
+    <div class="container">
+
+      <form novalidate name="registerForm" class="form-signin">
+        <h2 class="form-signin-heading">Please Register</h2>
+	
+	<div class="form-group" ng-class="{ 'has-error' : registerForm.name.$invalid && !registerForm.name.$pristine}">
+	<label for="inputEmail" class="sr-only">Name</label>
+        <input type="name" id="inputName" name="name" class="form-control"  ng-model="user.name" placeholder="Name" ng-minlength="11" required >
+	</div>
+
+	<div class="form-group" ng-class="{ 'has-error' : registerForm.email.$invalid && !registerForm.email.$pristine}">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" name="email" class="form-control"  ng-model="user.email" placeholder="Email address" required>
+	</div>
+
+	
+	<div class="form-group" ng-class="{ 'has-error' : registerForm.password.$invalid && !registerForm.password.$pristine}">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" ng-model="user.password" ng-minlength="6" placeholder="Password" required>
+	</div>
+
+	
+	
+	<div class="form-group" ng-class="{ 'has-error' : registerForm.confirmpassword.$invalid && !registerForm.confirmpassword.$pristine}">
+ 	<label for="inputPassword" class="sr-only">Confirm Password</label>
+        <input type="password" id="inputConfirmPassword" name="confirmpassword" class="form-control" ng-model="user.confirmPassword" ng-minlength="6" 			  placeholder="Confirm Password" data-password-verify="user.password" required>
+	<div ng-show="registerForm.confirmpassword.$error.passwordVerify">Passwords are not equal</div>
+	</div>
+
+	<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="register(user)" ng-disabled="registerForm.$invalid">Register</button>
+      </form>
+
+    </div>
+
+     <div align="center">{{erro.message}} </div>
+
+
