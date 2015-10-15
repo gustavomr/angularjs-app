@@ -8,7 +8,7 @@
  
    <body ng-controller="LoginCtrl">
       <ul class="nav nav-tabs">
-       <li class="pull-right"><i class="fa fa-home"></i> {{currentUser}} <button class="btn btn-xs btn-primary btn-block" type="submit"  ng-click="logout()" ng-show="isauthenticated()">Logout</button></li>
+       <li class="pull-right"><i class="fa fa-home"></i> {{currentUser}} <button class="btn btn-sm btn-primary btn-block" type="submit"  ng-click="logout()" ng-show="isauthenticated()">Logout</button></li>
       <li class="pull-right"><i class="fa fa-home"></i></li>
        <li class="pull-right"><a href="#"><i class="fa fa-home"></i> Home</a></li>
         <li class="pull-right"><a href="#signin"><i class="fa fa-shield"></i> Signin</a></li>
