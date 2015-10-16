@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "main": "app.js",
+  "homepage": "https://github.com/gustavomr/app",
+  "authors": [
+    "09893064708 <gustavomr@gmail.com>"
+  ],
+  "description": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-messages": "~1.4.7"
+  }
+}
