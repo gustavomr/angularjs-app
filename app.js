@@ -5,13 +5,12 @@ app.config(function($httpProvider,$routeProvider)
    //
    $httpProvider.interceptors.push('authInterceptor');
 
- 
    $routeProvider
    .when('/signin', {
       templateUrl : 'signin/signin.html',
       controller  : 'LoginCtrl',
    })
-
+    
  .when('/register', {
       templateUrl : 'register/register.html',
       controller  : 'LoginCtrl',
@@ -75,4 +74,11 @@ app.directive("passwordVerify", function() {
         });
      }
    };
+});
+
+app.run(function(){
+    if( sessionStorage.currentUser != null)
+        {
+            $rootScope.currentUser = sessionStorage.currentUser;        
+        }
 });
