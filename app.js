@@ -1,4 +1,4 @@
-var app = angular.module('app',['ngRoute','ngMessages']);
+var app = angular.module('app',['ngRoute','ngMessages','angular-jwt']);
  
 app.config(function($httpProvider,$routeProvider)
 {
@@ -13,6 +13,20 @@ app.config(function($httpProvider,$routeProvider)
     
  .when('/register', {
       templateUrl : 'register/register.html',
+      controller  : 'LoginCtrl',
+   })
+   
+   .when('/request', {
+      templateUrl : 'request/request.html',
+      controller  : 'LoginCtrl',
+      access: {
+          requiresLogin: true
+      }
+       
+   })
+   
+.when('/forgotpassword', {
+      templateUrl : 'forgotpassword/forgotpassword.html',
       controller  : 'LoginCtrl',
    })
 
@@ -30,7 +44,7 @@ app.factory('authInterceptor', function ($rootScope, $q, $window) {
   return {
     request: function (config) {
       config.headers = config.headers || {};
-      if ($window.sessionStorage.token) {
+      if ($window.localStorage.token) {
         config.headers.Authorization = $window.sessionStorage.token;
       }
       return config;
@@ -76,9 +90,23 @@ app.directive("passwordVerify", function() {
    };
 });
 
-app.run(function(){
-    if( sessionStorage.currentUser != null)
+app.run(function($rootScope,$location){
+   
+  if( localStorage.currentUser != null)
         {
-            $rootScope.currentUser = sessionStorage.currentUser;        
-        }
+            $rootScope.currentUser = localStorage.currentUser;        
+  }
+  
+    //verifica se o usuário está logado, se não estiver redireciona para o login
+    $rootScope.$on('$routeChangeSuccess', function (event, toState, toParams) {
+  
+    var requireLogin = localStorage.currentUser;
+   
+    if (!requireLogin && $location.path() !== '#' && $location.path() !== '/' && $location.path() !== '/about') {
+         event.preventDefault();
+         $location.path("/signin");
+    }
+    
+  });
+
 });

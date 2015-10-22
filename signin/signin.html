@@ -1,7 +1,7 @@
     <div class="container">
 
       <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">Please Sign In</h2>
         <div class="form-group">
             <label for="inputEmail" class="sr-only">Email address</label>
             <input type="email" id="inputEmail" class="form-control"  ng-model="user.email" placeholder="Email address" autofocus>
@@ -12,8 +12,9 @@
         </div>
         
         <button class="btn btn-lg btn-primary btn-block" type="submit"  ng-click="login(user)" ng-hide="isauthenticated()">Sign in</button>
-	<button class="btn btn-lg btn-primary btn-block" type="submit"  ng-click="logout()" ng-show="isauthenticated()">Logout</button>
+	    <button class="btn btn-lg btn-primary btn-block" type="submit"  ng-click="logout()" ng-show="isauthenticated()">Logout</button>
       </form>
-
     </div>
+    <div align="center"><a href="#/register">New User?</a></div>
+    <div align="center"><a href="#/forgotpassword">Forgot Password?</a></div>
     <div align="center">{{mensagem}}</div>
