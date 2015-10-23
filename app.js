@@ -89,10 +89,10 @@ app.directive("passwordVerify", function() {
 
 app.run(function($rootScope,$location,jwtHelper){
     
-  //se token expirado, deleta token e redireciona para o login
-  if (jwtHelper.isTokenExpired(localStorage.token)) {
+  //se existe token e o mesmo está expirado, deleta token e redireciona para o login
+  if (localStorage.token && jwtHelper.isTokenExpired(localStorage.token)) {
         delete localStorage.token;
-        delete localStorage.currentUser;
+       delete localStorage.currentUser;
         $location.path("/signin");
   }
    
