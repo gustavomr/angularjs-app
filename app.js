@@ -19,9 +19,8 @@ app.config(function($httpProvider,$routeProvider)
    .when('/request', {
       templateUrl : 'request/request.html',
       controller  : 'LoginCtrl',
-      access: {
-          requiresLogin: true
-      }
+      secure: true
+      
        
    })
    
@@ -90,23 +89,30 @@ app.directive("passwordVerify", function() {
    };
 });
 
-app.run(function($rootScope,$location){
+app.run(function($rootScope,$location,jwtHelper){
+    
+  //se token expirado, deleta token e redireciona para o login
+  if (jwtHelper.isTokenExpired(localStorage.token)) {
+        delete localStorage.token;
+        delete localStorage.currentUser;
+        $location.path("/signin");
+  }
    
+  // inicializa o usuário logado    
   if( localStorage.currentUser != null)
-        {
-            $rootScope.currentUser = localStorage.currentUser;        
+  {
+      $rootScope.currentUser = localStorage.currentUser;        
   }
   
     //verifica se o usuário está logado, se não estiver redireciona para o login
-    $rootScope.$on('$routeChangeSuccess', function (event, toState, toParams) {
+    $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
   
-    var requireLogin = localStorage.currentUser;
+  if (next && next.$$route && next.$$route.secure) {
+        if (!localStorage.currentUser) {
+             $location.path("/signin");
+        }
+  }
    
-    if (!requireLogin && $location.path() !== '#' && $location.path() !== '/' && $location.path() !== '/about') {
-         event.preventDefault();
-         $location.path("/signin");
-    }
-    
   });
 
 });
