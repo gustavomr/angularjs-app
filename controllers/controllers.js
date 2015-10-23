@@ -47,17 +47,6 @@ app.controller('LoginCtrl', function($scope,$http, $window,$rootScope,jwtHelper)
          });
 };
     
-        $scope.teste = function(user) {
-            
-  	$http.get(baseURL+'/api/status')
-	.success(function(data){
-            }).error(function(error){
-      //     console(user.email);
-            $scope.mensagem = error.message;
-         });
-};
-    
-  
  $scope.logout = function () {
  $http.put(baseURL+'/api/secured/logout').success(function(data){
      delete localStorage.token;

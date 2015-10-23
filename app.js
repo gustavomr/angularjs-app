@@ -19,9 +19,7 @@ app.config(function($httpProvider,$routeProvider)
    .when('/request', {
       templateUrl : 'request/request.html',
       controller  : 'LoginCtrl',
-      secure: true
-      
-       
+      secure: true 
    })
    
 .when('/forgotpassword', {
@@ -44,7 +42,7 @@ app.factory('authInterceptor', function ($rootScope, $q, $window) {
     request: function (config) {
       config.headers = config.headers || {};
       if ($window.localStorage.token) {
-        config.headers.Authorization = $window.sessionStorage.token;
+        config.headers.Authorization = $window.localStorage.token;
       }
       return config;
     },
