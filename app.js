@@ -4,10 +4,6 @@ app.constant("baseURL","http://localhost:8080");
 
 app.config(function($httpProvider,$routeProvider)
 {
-    
-   
-    
-   //
    $httpProvider.interceptors.push('authInterceptor');
 
    $routeProvider
@@ -111,7 +107,7 @@ app.run(function($rootScope,$location,jwtHelper){
   if( localStorage.currentUser != null)
   {
       $rootScope.currentUser = localStorage.currentUser;        
-  }
+  } 
   
     //verifica se o usuário está logado, se não estiver redireciona para o login
     $rootScope.$on('$routeChangeSuccess', function (event, next, current) {

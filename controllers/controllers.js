@@ -2,11 +2,11 @@ app.controller('LoginCtrl', function($scope,$http, $window,$rootScope,jwtHelper,
 
    $scope.user = {};
    $scope.mensagem = ""; 
-   $rootScope.currentUser = localStorage.currentUser;
+ //  $rootScope.currentUser = localStorage.currentUser;
 
    $scope.login = function(user) {
    $http.post(baseURL+'/api/open/login', user).success(function(response,status, headers, config) {
-
+       
 	 localStorage.token = headers('Authorization');
 	  $http.defaults.headers.common['Authorization'] = localStorage.token;
        $window.localStorage.currentUser = jwtHelper.decodeToken(localStorage.token).email;
