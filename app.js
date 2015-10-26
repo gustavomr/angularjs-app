@@ -1,7 +1,12 @@
 var app = angular.module('app',['ngRoute','ngMessages','angular-jwt']);
- 
+
+app.constant("baseURL","http://localhost:8080");  
+
 app.config(function($httpProvider,$routeProvider)
 {
+    
+   
+    
    //
    $httpProvider.interceptors.push('authInterceptor');
 
@@ -16,9 +21,15 @@ app.config(function($httpProvider,$routeProvider)
       controller  : 'LoginCtrl',
    })
    
-   .when('/request', {
+.when('/request', {
       templateUrl : 'request/request.html',
       controller  : 'LoginCtrl',
+      secure: true 
+   })
+   
+.when('/profile', {
+      templateUrl : 'profile/profile.html',
+      controller  : 'ProfileCtrl',
       secure: true 
    })
    

@@ -1,8 +1,7 @@
-app.controller('LoginCtrl', function($scope,$http, $window,$rootScope,jwtHelper) {
+app.controller('LoginCtrl', function($scope,$http, $window,$rootScope,jwtHelper,baseURL) {
 
    $scope.user = {};
    $scope.mensagem = ""; 
-   var baseURL = "http://localhost:8080";
    $rootScope.currentUser = localStorage.currentUser;
 
    $scope.login = function(user) {
@@ -11,7 +10,6 @@ app.controller('LoginCtrl', function($scope,$http, $window,$rootScope,jwtHelper)
 	 localStorage.token = headers('Authorization');
 	  $http.defaults.headers.common['Authorization'] = localStorage.token;
        $window.localStorage.currentUser = jwtHelper.decodeToken(localStorage.token).email;
-       console.log();
        $rootScope.currentUser = localStorage.currentUser;
        $scope.user = {};
        $window.location.href = '#/';

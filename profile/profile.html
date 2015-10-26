@@ -1,0 +1,27 @@
+
+<div class="container">
+
+      <form novalidate name="profileForm" class="form-signin">
+        <h2 class="form-signin-heading">Please Update your Profile</h2>
+          
+    <div class="form-group">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" name="email" class="form-control"  ng-model="user.email" placeholder="Email address" readonly>
+	</div>
+	
+	<div class="form-group" ng-class="{ 'has-error' : registerForm.name.$invalid && !registerForm.name.$pristine}">
+	<label for="inputEmail" class="sr-only">Name</label>
+        <input type="name" id="inputName" name="name" class="form-control"  ng-model="user.name" placeholder="Name" ng-minlength="11" required >
+	</div>
+
+	
+
+	<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="changeprofile(user)" ng-disabled="profileForm.$invalid">Save</button>
+      </form>
+
+    </div>
+
+     <div align="center">{{mensagem}}</div>
+
+   <script src="profile/profileCtrl.js"></script>
+
