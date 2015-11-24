@@ -4,11 +4,11 @@
         <h2 class="form-signin-heading">Please Sign In</h2>
         <div class="form-group">
             <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control"  ng-model="user.email" placeholder="Email address" autofocus>
+            <input type="email" id="inputEmail" class="form-control"  ng-model="user.email" placeholder="Email address" autofocus readonly="isauthenticated()">
         </div>
         <div class="form-group">
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" ng-model="user.password" placeholder="Password">
+            <input type="password" id="inputPassword" class="form-control" ng-model="user.password" placeholder="Password"  readonly="isauthenticated()">
         </div>
       
         <button class="btn btn-lg btn-primary btn-block" type="submit"  ng-click="login(user)" ng-hide="isauthenticated()">Sign in</button>
@@ -19,3 +19,11 @@
     <div align="center"><a href="#/register">New User?</a></div>
     <div align="center"><a href="#/forgotpassword">Forgot Password?</a></div>
     <div align="center">{{mensagem}}</div>
+<br>
+   <div class="container">
+ <h2 class="form-signin-heading">Facebook Login</h2>
+<div align="center">
+<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true" on-login="checkLoginState()" 
+data-scope="public_profile,email"</div>
+</div>
+</div>

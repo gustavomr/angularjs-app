@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html ng-app="app">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -6,7 +6,61 @@
       <title>Barganha APP</title>
    </head>
  
-   <body ng-controller="LoginCtrl">
+   <body id="idbody" ng-controller="LoginCtrl">
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=151080118575990";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+
+
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+
+
+ FB.api('/me?fields=name,email', function(response1) {
+
+
+       // console.log('Good to see you, ' + response.name + '.' + ' Email: ' + response.email + ' Facebook ID: ' + response.id);
+    var email = {email: response1.email}
+   
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+     console.log(response1.email);
+      angular.element(document.getElementById('idbody')).scope().facebooklogin(email);
+
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      //document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+   //   document.getElementById('status').innerHTML = 'Please log ' +
+      //  'into Facebook.';
+    }
+ 	});
+  }
+
+ function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+
+
+</script>
+
       <ul class="nav nav-tabs">
        <li class="pull-right"><i class="fa fa-home"></i> {{currentUser}} <button class="btn btn-xs btn-primary btn-block" type="submit"  ng-click="logout()" ng-show="isauthenticated()">Logout</button></li>
       <li class="pull-right"><i class="fa fa-home"></i></li>

@@ -31,7 +31,23 @@ app.controller('LoginCtrl', function($scope,$http, $window,$rootScope,jwtHelper,
             $scope.mensagem = error.message;
          });
 };
-    
+
+$scope.facebooklogin = function(email) {
+   $http.post(baseURL+'/api/open/facebooklogin', email).success(function(response,status, headers, config) {
+       
+	 localStorage.token = headers('Authorization');
+	  $http.defaults.headers.common['Authorization'] = localStorage.token;
+       $window.localStorage.currentUser = jwtHelper.decodeToken(localStorage.token).email;
+       $rootScope.currentUser = localStorage.currentUser;
+       $scope.user = {};
+       $window.location.href = '#/';
+      
+	    }).error(function(error){
+            $scope.mensagem = error.message;
+         });
+};
+	 
+
     $scope.forgotpassword = function(user) {
   	$http.put(baseURL+'/api/open/account/password/send-reset-link?email='+user.email)
 	.success(function(data){

@@ -1,4 +1,4 @@
-var app = angular.module('app',['ngRoute','ngMessages','angular-jwt']);
+﻿var app = angular.module('app',['ngRoute','ngMessages','angular-jwt']);
 
 app.constant("baseURL","http://localhost:8080");  
 
@@ -45,6 +45,7 @@ app.config(function($httpProvider,$routeProvider)
 
 // envia a authorização em cada POST, PUT, GET...
 app.factory('authInterceptor', function ($rootScope, $q, $window) {
+
   return {
     request: function (config) {
       config.headers = config.headers || {};
